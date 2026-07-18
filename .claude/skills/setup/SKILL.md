@@ -30,7 +30,18 @@ Establish, in the owner's own words:
 
 Facts you couldn't verify get a `<!-- verify -->` marker in the content files.
 
-## 3. Personalize the system
+## 3. Gap check: clarify what you already have
+
+Between ingesting and writing any guide, take stock. For each of the four targets below, note what the material already answers (and where that came from) and what is missing or uncertain, then close the gaps with the owner in one or two batched rounds of questions. Ground every question in something specific you found; "your old site says the studio opened in 2019, is that still right?" gets a better answer than "tell me about your history". And prefer proposing over interrogating: show the three colors you extracted and ask keep or change, draft the bio from their documents and ask what's wrong with it.
+
+- **Facts and content** (`source/content/`): bio, dates, prices, claims, contact details. Everything scraped or inferred gets confirmed now or keeps its `<!-- verify -->` marker.
+- **Voice** (`voice.md`): the tone you observed in their material versus the tone they want; words they reach for; words to ban; the exact notation of the project name.
+- **Design** (`design.md` + `tokens.css`): the palette, type, and layout cues you extracted; continuity with the old look or a clean break; references they admire.
+- **Brief** (`brief.md`): audience, what a visitor should do, current priorities.
+
+Where the interface offers structured questions (AskUserQuestion), use it with concrete options. Don't move on while a guide would still contain a guess on something the owner could settle in one sentence.
+
+## 4. Personalize the system
 
 Replace every TODO in these files with what you learned, keeping each file's structure:
 
@@ -41,14 +52,14 @@ Replace every TODO in these files with what you learned, keeping each file's str
 
 Read each personalized guide back as a whole; it must read as this project's guide, with no template smell left.
 
-## 4. Build v1
+## 5. Build v1
 
 Build the site in `site/` per `source/formats/website.md`: layout shell first (nav, footer, typography on tokens), then pages, then collections if any. Replace the placeholder home page. Run `npm install` and `npm run dev` inside `site/`, verify at mobile and desktop widths, then review it with the owner page by page (share the local URL, show screenshots). Iterate until they're happy; this loop is most of the session.
 
-## 5. Go live
+## 6. Go live
 
 Walk the owner (or their helper) through `docs/deploy-cloudflare.md` while they click. Commit and push everything first so Cloudflare has something to build. Once the `.pages.dev` URL is live, verify it yourself, record the URLs in `brief.md`, and continue to the domain if they own one.
 
-## 6. Close
+## 7. Close
 
 Run the reflect skill (it will have plenty to record from this session), push everything, and tell the owner what exists now: the live URL, what each folder is for in one line each, and how to work with you from now on (open the folder, run `claude`, talk, drop files in the inbox).

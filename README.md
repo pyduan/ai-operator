@@ -1,4 +1,4 @@
-# Atelier
+# AI webmaster
 
 Your website, your decks, your whole online presence, built and maintained by AI from one repo you own.
 
