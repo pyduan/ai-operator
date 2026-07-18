@@ -1,0 +1,35 @@
+---
+// Placeholder home page. The setup session replaces this with the real one.
+import Base from '../layouts/Base.astro';
+---
+
+<Base title="Not set up yet" description="This site is waiting for its first setup session.">
+  <section class="placeholder">
+    <h1>Almost there</h1>
+    <p>
+      This site hasn't had its setup session yet. Open this folder in a terminal,
+      run <code>claude</code>, and say: <strong>“set up my site”</strong>.
+    </p>
+    <p>
+      You'll be interviewed about what the site is for, your content will be
+      ingested (drop files in <code>source/inbox/</code>, or point at your old
+      site), and a first version will be built with you, live.
+    </p>
+  </section>
+</Base>
+
+<style>
+  .placeholder {
+    max-width: 44rem;
+  }
+  .placeholder h1 {
+    margin-bottom: var(--space-4);
+  }
+  .placeholder code {
+    background: var(--color-surface);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius);
+    padding: 0 var(--space-1);
+    font-size: 0.95em;
+  }
+</style>

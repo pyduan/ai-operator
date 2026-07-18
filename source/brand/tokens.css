@@ -1,0 +1,39 @@
+/* Design tokens: the single place where colors, fonts, and scale are defined.
+   The site imports this file; decks copy the current values into their inline
+   styles at build time (decks must stay self-contained single files).
+   Rules for editing: change values freely, rename carefully (search all uses),
+   and never let a hex value or font name live anywhere else. */
+
+:root {
+  /* Color. Neutral starter palette; the setup session replaces it. */
+  --color-bg: #faf9f7;          /* page background */
+  --color-surface: #ffffff;     /* cards, raised areas */
+  --color-ink: #1a1a1a;         /* body text */
+  --color-muted: #6b6b6b;       /* secondary text, captions */
+  --color-line: #e3e0da;        /* hairlines, borders */
+  --color-accent: #1a3a2e;      /* links, emphasis, primary buttons */
+  --color-accent-ink: #faf9f7;  /* text on accent */
+
+  /* Type */
+  --font-display: ui-serif, Georgia, serif;
+  --font-text: system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  /* Type scale (rem). One scale for the whole site. */
+  --text-sm: 0.875rem;
+  --text-base: 1.0625rem;
+  --text-lg: 1.375rem;
+  --text-xl: 1.875rem;
+  --text-2xl: 2.75rem;
+
+  /* Spacing scale (rem) */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 1rem;
+  --space-4: 2rem;
+  --space-5: 4rem;
+  --space-6: 8rem;
+
+  /* Shape and layout */
+  --radius: 4px;
+  --max-width: 68rem;
+}

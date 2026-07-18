@@ -1,0 +1,50 @@
+---
+// Shared shell for every page: head, header, footer.
+// Nav lives here and only here; adding a page means adding one link below.
+import '../../../source/brand/tokens.css';
+import '../styles/site.css';
+
+interface Props {
+  title: string;
+  description: string;
+}
+
+const { title, description } = Astro.props;
+
+// Personalized during setup.
+const siteName = 'Your site';
+const nav: { href: string; label: string }[] = [
+  // { href: '/', label: 'Home' },
+];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="wordmark" href="/">{siteName}</a>
+      {nav.length > 0 && (
+        <nav>
+          {nav.map((item) => (
+            <a href={item.href} aria-current={Astro.url.pathname === item.href ? 'page' : undefined}>
+              {item.label}
+            </a>
+          ))}
+        </nav>
+      )}
+    </header>
+    <main>
+      <slot />
+    </main>
+    <footer class="site-footer">
+      <p>© {new Date().getFullYear()} {siteName}</p>
+    </footer>
+  </body>
+</html>
