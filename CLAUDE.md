@@ -30,6 +30,7 @@ Find every row that matches the task at hand and read those files before produci
 | The owner wants to look something up, or wants a recurring watch on a topic | `.claude/skills/research/SKILL.md` |
 | Starting a new project, or something the owner calls "a different site" | `.claude/skills/new-project/SKILL.md` (decide new repo vs. variant before creating anything) |
 | Publishing, hosting, domains | `docs/deploy-cloudflare.md` |
+| An install or hosting step fails, or the owner pastes an error | `docs/troubleshooting.md` — check it before improvising; if the problem isn't in it, add the entry once solved |
 
 ## Working rules
 
@@ -68,6 +69,7 @@ site/                        the Astro website (npm run dev / build inside it)
 site/public/decks/<slug>/    published decks, one self-contained HTML each
 scripts/bootstrap-*          one-command install for a new machine/owner (mac + windows)
 docs/deploy-cloudflare.md    hosting and DNS, step by step
+docs/troubleshooting.md      the install/hosting FAQ (living: add solved problems to it)
 docs/how-it-works.md         the mental model, for humans
 .claude/skills/              setup · new-project · publish · new-deck · research · reflect
 ```

@@ -66,7 +66,13 @@ Build the site in `site/` per `source/formats/website.md`: layout shell first (n
 
 ## 6. Go live
 
-Walk the owner (or their helper) through `docs/deploy-cloudflare.md` while they click. Commit and push everything first so Cloudflare has something to build. Once the `.pages.dev` URL is live, verify it yourself, record the URLs in `brief.md`, and continue to the domain if they own one.
+Walk the owner (or their helper) through `docs/deploy-cloudflare.md` while they click, one step at
+a time, confirming each screen before moving on. **Commit and push everything first**: Cloudflare's
+production-branch dropdown only lists branches that already exist on GitHub, so until the first
+push there is no `main` to pick (a real stumble — see `docs/troubleshooting.md`). If they hit any
+error along the way, check `docs/troubleshooting.md` before improvising; if their problem isn't in
+it, add the entry once solved. Once the `.pages.dev` URL is live, verify it yourself, record the
+URLs in `brief.md`, and continue to the domain if they own one.
 
 ## 7. Close
 

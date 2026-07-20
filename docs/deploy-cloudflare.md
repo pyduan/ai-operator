@@ -2,12 +2,21 @@
 
 One-time hosting setup, about 15 minutes, free. After this, every push to `main` rebuilds the live site automatically; nobody ever "deploys" by hand. The AI can walk you through these steps while you click.
 
+## 0. Push first
+
+Connect Cloudflare only **after** the first version of the site has been committed and pushed to
+GitHub (Claude does this as part of building v1). Cloudflare's **Production branch** dropdown
+only lists branches that already exist on GitHub — a repo with nothing pushed yet shows an empty
+dropdown that won't take free text, which stops everyone who connects hosting before building.
+The production branch is always **`main`**.
+
 ## 1. Connect the repo
 
 1. Create a free account at [dash.cloudflare.com](https://dash.cloudflare.com) (it should belong to the owner, like the GitHub account).
 2. In the dashboard: **Workers & Pages → Create → Pages → Connect to Git**.
 3. Authorize Cloudflare on GitHub and pick your repo.
 4. Build settings:
+   - Production branch: **`main`**
    - Framework preset: **Astro**
    - Build command: `npm run build`
    - Build output directory: `dist`

@@ -50,7 +50,7 @@ source/              your source of truth
 site/                the website itself (Astro, deployed by Cloudflare Pages)
 site/public/decks/   your presentations, each a single shareable HTML file
 scripts/             one-command install scripts (mac + windows)
-docs/                how the system works + the Cloudflare deploy guide
+docs/                how it works, the Cloudflare deploy guide, the troubleshooting FAQ
 .claude/             skills (setup, new-project, publish, new-deck, research, reflect) + hooks
 ```
 
@@ -76,6 +76,8 @@ The prompt to paste, if you go the first route:
 > computer, and create my own private copy of the template repo there.
 
 Either way you end up with your own copy, cloned locally, and a first session that interviews you and builds v1. After that it's yours: open the folder, run `claude` (or the desktop app), talk.
+
+If a step fails, [docs/troubleshooting.md](docs/troubleshooting.md) has the fixes for the problems everyone actually hits: git vs GitHub vs gh, the Mac command-line-tools popup, "command not found" right after an install, Cloudflare's empty production-branch dropdown, and running Claude Code in the cloud instead of installing anything locally.
 
 ## Try saying
 

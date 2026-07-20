@@ -12,6 +12,7 @@ Scan the conversation for:
 - **Taste and corrections**: anything the owner corrected, praised, or rejected about words → `source/brand/voice.md`; about looks → `source/brand/design.md` (and `tokens.css` if values changed); about how a format is built → the relevant `source/formats/*.md`. Write rules the way the guides do: short, concrete, with an example when the correction came from a real one.
 - **New facts**: about the owner, the project, priorities, decisions taken → `source/brief.md` (update the sections, append dated one-liners to history).
 - **Stale rules**: anything in the guides this session contradicted or made obsolete. Prune it; guides must stay lean and current or they rot.
+- **Solved problems**: an install, git, or hosting snag that got diagnosed this session → an entry in `docs/troubleshooting.md` (what you see, what it means, what to do), so the next person finds the fix instead of asking a human.
 - **Leftovers**: unprocessed inbox files, unpushed work, a `<!-- verify -->` fact that got confirmed.
 
 Then:

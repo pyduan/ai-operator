@@ -4,6 +4,11 @@ One-time setup, about an hour. Everything after this hour happens by talking to 
 three ways to get installed — pick whichever fits; they all end the same place: your own private
 repo, cloned locally, ready to talk to.
 
+If anything fails along the way, [docs/troubleshooting.md](docs/troubleshooting.md) collects the
+problems everyone actually hits (git vs GitHub vs gh, the Mac command-line-tools popup, "command
+not found" after an install, Cloudflare's empty production-branch dropdown, cloud vs desktop
+Claude Code) with their fixes.
+
 ## Option A (easiest): let Claude install itself
 
 Open Claude Code — the **desktop app** is the easiest on-ramp if you're not comfortable in a
@@ -13,11 +18,14 @@ just as well if you already have a terminal you like. Then paste this:
 > I want to set up my own site using the agentic-org template
 > (github.com/pyduan/agentic-org). Check what's already on my machine (git,
 > Node, the GitHub CLI, and whether I'm logged into GitHub). Ask me Mac or
-> Windows if you can't tell from my system. Install whatever's missing,
-> explaining each step in plain language and asking before anything that
-> needs my password. Log me into GitHub (the browser-based login, not an
-> SSH key). Then ask me for my project's name and where I'd like it on my
-> computer, and create my own private copy of the template repo there.
+> Windows if you can't tell from my system. Install whatever's missing, one
+> step at a time: explain each step in plain language, verify it actually
+> worked before moving to the next, and ask before anything that needs my
+> password. If a step fails, look up the fix in the template's
+> docs/troubleshooting.md on GitHub and walk me through it. Log me into
+> GitHub (the browser-based login, not an SSH key). Then ask me for my
+> project's name and where I'd like it on my computer, and create my own
+> private copy of the template repo there.
 
 Claude checks, installs, authenticates, asks the two questions it needs, and finishes with your own
 cloned repo. From there, keep talking: say **"set up my site"** to start the real interview (see
