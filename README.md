@@ -42,6 +42,7 @@ CLAUDE.md            the AI's operating manual: rules + a map of every guide
 SETUP.md             the one-hour setup checklist, three ways to install
 source/              your source of truth
   brief.md           who you are, what the site is for, current priorities
+  decisions.md       how hypotheses & positioning evolved, and why (per discussion)
   inbox/             drop zone: put anything here and tell the AI about it
   content/           your canonical texts, facts, and data (prices, catalogs...)
   facts/             sourced third-party facts and key figures (stats, benchmarks)

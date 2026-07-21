@@ -38,5 +38,9 @@
 
 ## History and decisions
 
+The **detail** of how hypotheses and positioning evolved, and **why** (tied to each discussion),
+lives in [`decisions.md`](decisions.md). Keep the milestones below; **after a discussion that moves
+a hypothesis or the positioning, update `decisions.md`.**
+
 <!-- Append dated one-liners for decisions worth remembering, newest first.
      Example: 2026-07-18 · dropped the blog idea, energy goes to the gallery. -->

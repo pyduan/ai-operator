@@ -25,6 +25,7 @@ Find every row that matches the task at hand and read those files before produci
 | A web app or interactive tool (calculator, simulator, form flow, dashboard) | `source/formats/webapp.md`, plus voice and design above |
 | A deck or presentation | `source/formats/deck.md`, plus voice and design above |
 | A phone / chat / platform demo (inside a deck, page, or app) | `source/formats/demos.md`, plus voice and design above |
+| A discussion (internal or external) that moves a hypothesis or the positioning | `source/decisions.md` — add a dated entry (the why, before → after) |
 | Files the owner dropped for you | `source/inbox/README.md` |
 | Repeated items (gallery pieces, products, projects, events) | the collections section of `source/formats/website.md` |
 | Facts about the owner or project (bio, dates, prices, claims) | `source/content/` (never invent facts; ask if missing) |
@@ -59,6 +60,7 @@ This is what makes the system compound: feedback given once becomes a rule appli
 
 ```
 source/brief.md              project brief: read every session
+source/decisions.md          how hypotheses & positioning evolved, and why (per discussion)
 source/inbox/                drop zone (processed then emptied)
 source/content/              canonical texts, facts, and data files
 source/facts/                sourced third-party facts and key figures
