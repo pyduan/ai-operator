@@ -26,5 +26,5 @@ Start every new deck from `source/formats/deck-template.html`, which provides th
 
 - Present in a browser, fullscreen (F11 or ⌘⌃F), arrow keys to navigate.
 - Share the live URL; the hash (`#5`) links to a specific slide.
-- PDF when requested: print from the browser, the template's print styles emit one page per slide.
+- PDF when requested: print from the browser; each slide becomes exactly one page, printed at the **same fixed 1280×720 canvas** as on screen. The print box *is* the design box, so a slide that fits on screen fits the page, and anything overflowing the canvas is clipped in the PDF exactly as it is on screen. This is the real teeth behind "one idea per slide": if it doesn't fit the canvas, cut content, never shrink it or let it spill onto a second page.
 - A deck that must stay private doesn't get pushed: keep it out of the repo entirely and present it locally, since the repo publishes on push.
