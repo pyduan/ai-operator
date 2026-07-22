@@ -1,6 +1,6 @@
 ---
 name: new-project
-description: "Decide whether a new request needs its own separate repo or is a variant of the current project (a sub-site, a sub-app, a new page), then act on it. Use when the owner says they want to start something new, set up another site, build a web app, or work for a different client/brand — before creating anything."
+description: "Decide whether a new request needs its own separate repo, is a variant of the current project (a sub-site, a sub-app, a new page), or is a self-contained area that lives as a subfolder here, then initialize its structure and act on it. Use when the owner says they want to start something new, set up another site, build a web app, open a new area or workstream, or work for a different client/brand — before creating anything."
 ---
 
 # New project or a variant?
@@ -61,18 +61,37 @@ prices, and voice. Instead:
    (e.g. two sites for the same organization), that's a bigger structural decision — flag it and
    propose a monorepo split rather than deciding it silently; don't default into it.
 
-## It's sensitive material — its own access-restricted repo
+## It's a self-contained area — a subfolder here, or its own repo
 
-Same project, but the material is sensitive or meant for only some people (legal documents, HR and
-payroll data, finances, private client records). It does not belong in the shared repo even though
-it's the same organization. Give it a **dedicated private repo** that only the right people can
-open, and leave a short, **fact-free signpost** in this repo (a note in the relevant guide) that
-names the owner, states what's public versus restricted, and explains that the real work happens in
-the private repo when the session can clone and pull it (GitHub permissions are the real gate). If
-it can't, that means the requester isn't authorized: say so and route them to the owner rather than
-reconstructing the restricted fact. Register the repo and who owns it in
-[`ORGANIGRAM.md`](../../../ORGANIGRAM.md) so the access boundary is written down once. A restricted
-repo is never auto-published: commit locally, push only when its owner asks.
+Sometimes the new thing isn't a page, app, or deck but a whole area of work in this same project: a
+body of notes, a dataset, an ongoing workstream. Where it lives is a spectrum decided by
+sensitivity, and a new repo is only the far end of it:
+
+- **Not sensitive** → a **subfolder in this repo** (material under `source/`, a tool under `apps/`).
+  It shares the brand and the cascade like any other variant, and is the default: prefer it.
+- **Private to you, but worth versioning** → a **git-ignored** subfolder, or a separate
+  **local-only** repo on your machine (CLAUDE.md's sensitive-content rule). It never enters the
+  shared public repo, but it's still versioned and backed up.
+- **Sensitive or gated to specific people** (legal documents, HR and payroll data, finances,
+  private client records) → its **own access-restricted repo**, with a short, **fact-free signpost**
+  here (a note in the relevant guide) that names the owner, states what's public versus restricted,
+  and explains that the real work happens in the private repo when the session can clone and pull it
+  (GitHub permissions are the real gate). If it can't, the requester isn't authorized: say so and
+  route them to the owner rather than reconstructing the restricted fact. A restricted repo is never
+  auto-published: commit locally, push only when its owner asks.
+
+Register whichever it is in [`ORGANIGRAM.md`](../../../ORGANIGRAM.md) so the area, and any access
+boundary, is written down once.
+
+**Whichever it is, initialize its structure first, never leave a bare folder.** A self-contained
+area gets its own small setup so every future session knows where things go:
+
+- **A new repo** → run the full `setup` skill there (its own interview, its own guides).
+- **A subfolder here** → decide its layout up front before dropping anything in: the subfolders it
+  needs, a short `README.md` at its root saying what lives there and how it's organized, and any
+  guide or signpost the area warrants. Match the kit's conventions (content under `source/`, a tool
+  under `apps/`, sensitive material git-ignored or in its own repo), seed that skeleton, then work in
+  it. If the area changes how the project is organized, note it in `source/brief.md` too.
 
 ## When still unsure
 
