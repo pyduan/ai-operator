@@ -1,0 +1,20 @@
+{
+  // Cloudflare Workers config for publishing this site.
+  //
+  // The site is a fully static Astro build (output in ./dist), so this is an
+  // "assets-only" Worker: no server code, no `main` entrypoint, no ASSETS
+  // binding. Workers serves the built files directly. See docs/deploy-cloudflare.md.
+  //
+  // `name` MUST match the Worker's name in the Cloudflare dashboard, or a
+  // Git-connected build (Workers Builds) fails. The setup skill sets it to your
+  // project name during the first session, the same way it fills astro.config's
+  // `site:` line. Until then it is a placeholder.
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "TODO-project-name",
+  "compatibility_date": "2026-07-24",
+  "assets": {
+    "directory": "./dist"
+    // If this site ever becomes a single-page app (one index.html that routes
+    // client-side), add: "not_found_handling": "single-page-application"
+  }
+}

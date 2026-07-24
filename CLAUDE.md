@@ -11,7 +11,7 @@ This repo is the single source of truth. `source/` holds the truth: content, bra
 1. `git pull` first, always. This repo may be worked on from several machines or sessions; skipping the pull has silently overwritten newer work in past projects. **If your organization spans more than this repo** (a shared org repo plus separate project repos the `new-project` skill created, or repos with restricted access), clone the ones a task needs **side by side** and `git pull` each at the start — the repo map and who-can-access-what live in `ORGANIGRAM.md`. Working from a stale clone ships an out-of-date brand or a wrong fact.
 2. Read `source/brief.md`. It holds who this site is for, what exists, and current priorities.
 3. If `brief.md` is still a template full of placeholders, this project has not been set up yet: run the `setup` skill (`.claude/skills/setup/SKILL.md`) before anything else.
-4. If the owner asks to start something new (a different client, a different brand, "another site"), don't assume — run the `new-project` skill (`.claude/skills/new-project/SKILL.md`) to decide whether that's a new repo or a variant of this one before creating anything.
+4. If the owner asks to start something new (a different client, a different brand, "another site", or **several projects or use cases at once**), don't assume — run the `new-project` skill (`.claude/skills/new-project/SKILL.md`) before creating anything. It decides whether the new thing is a new repo or a variant of this one, and when there's more than one project, asks the structuring questions first (one project or several? how much do they share, and which inherits from which?) before recommending folders in one repo, repos in one GitHub org, or separate orgs.
 
 ## Which guide to read, per task
 
@@ -34,7 +34,7 @@ Find every row that matches the task at hand and read those files before produci
 | A piece of work the org drives (a client engagement, a grant, a launch): start tracking it, log a decision, file its documents, "where do we stand" | `.claude/skills/projects/SKILL.md` — the project's memory lives in `projects/<slug>/`, and a deck or page about it pulls facts from there |
 | The owner's team: 1:1 notes to distill, a management TODO, 1:1 prep, goals to challenge, management advice | `.claude/skills/team/SKILL.md` — people data lives ONLY in the gitignored, local-only `team/` folder; verify the `.gitignore` rules before writing there, and never commit, publish, or relay any of it |
 | Prioritization: what matters most, whether a project or goal is aligned | `source/objectives.md` (the owner's north star; owner-only to change) — if it's still empty, offer to fill it first |
-| Starting a new project, or something the owner calls "a different site" or "an app" | `.claude/skills/new-project/SKILL.md` (decide new repo vs. sub-site/sub-app in this one, before creating anything) |
+| Starting a new project, something the owner calls "a different site" or "an app", or **several projects/use cases at once** | `.claude/skills/new-project/SKILL.md` (decide new repo vs. sub-site/sub-app in this one, and for several projects the structure — folders, repos in one org, or separate orgs — before creating anything) |
 | The kit/framework was updated and the owner wants the newest guides/skills/scripts | `.claude/skills/update-kit/SKILL.md` (pull template improvements, keep the owner's content, re-apply follow-ups) |
 | Who may change or approve what, or which repos the organization spans and who can access them | `ORGANIGRAM.md` (governance + repo map; solo-owner by default, fill in as the team grows) |
 | Publishing, hosting, domains | `docs/deploy-cloudflare.md` |
@@ -42,7 +42,7 @@ Find every row that matches the task at hand and read those files before produci
 
 ## Working rules
 
-- **Work directly on `main`.** Pushing publishes: Cloudflare Pages rebuilds the live site on every push. This solo mode is the default. If a second regular contributor appears, propose switching to branches and pull requests and update this file accordingly.
+- **Work directly on `main`.** Pushing publishes: Cloudflare Workers rebuilds the live site on every push. This solo mode is the default. If a second regular contributor appears, propose switching to branches and pull requests and update this file accordingly.
 - **You run all the git, never the owner.** Most owners aren't technical. Never ask them to open a terminal, run a command, or touch branches, commits, or deploys — and never paste a command for them to copy. You do the whole thing: stage, commit, push, publish, merge. If a git action is blocked by a permission, ask them to **approve the permission**, then do it yourself; don't hand the git back to them.
 - **Verify before publishing.** Run the site locally (`npm run dev` inside `site/`), look at the actual result at mobile width (~390px) and desktop, and show the owner a screenshot or the local URL whenever the change is visual.
 - **Then publish — how much you pause depends on the mode the owner picked at setup** (recorded in `brief.md`; default is simplified). Stage the files you touched explicitly by name (never a blind `git add -A`) and commit with a clear message either way.
@@ -81,6 +81,7 @@ source/formats/website.md    website playbook (pages, collections, images, SEO)
 source/formats/webapp.md     web-app playbook (page vs app, stack, data rules, publishing)
 source/formats/deck.md       deck playbook + source/formats/deck-template.html
 site/                        the Astro website (npm run dev / build inside it)
+site/wrangler.jsonc          how Cloudflare Workers serves the built site (name set at setup)
 site/public/decks/<slug>/    published decks, one self-contained HTML each
 apps/<slug>/                 web apps of this project, one self-contained folder each
 projects/<slug>/             the org's work, tracked: charter, log, files, next steps

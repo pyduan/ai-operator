@@ -51,9 +51,10 @@ because the whole point of this kit is that **you own your source of truth and s
 
 1. **Can it stay client-side?** Often yes: a data file + browser computation, a `mailto:` or a
    Stripe Payment Link instead of a form backend, a read-only dashboard over a committed CSV. Prefer
-   this — it keeps the app in the repo, free on Cloudflare Pages, owned end to end.
-2. **A sovereign backend the owner controls.** If it truly needs state: a Cloudflare Worker + D1/KV
-   (same account that already hosts the site), or a self-hostable open-source backend (Supabase,
+   this — it keeps the app in the repo, free on Cloudflare Workers, owned end to end.
+2. **A sovereign backend the owner controls.** If it truly needs state: add server code to the same
+   Worker that serves the app, with Cloudflare D1/KV for storage (same account that already hosts
+   the site), or a self-hostable open-source backend (Supabase,
    PocketBase). The data and code stay the owner's, exportable, no vendor runtime. This is the right
    escalation for anything meant to last.
 3. **An agent-native app builder (fast, but lock-in) — a pointer, not a default.** Tools like
@@ -74,10 +75,12 @@ Two options, simplest first:
 - **Under the site** — for an app that belongs to the same domain: build/copy it into
   `site/public/apps/<slug>/` so it ships with the site at `yourdomain.com/apps/<slug>/`. Zero
   extra hosting setup.
-- **Its own Cloudflare Pages project** — for an app that wants its own URL or its own domain:
-  a second Pages project **on the same repo**, with **Root directory: `apps/<slug>`** and
-  production branch `main` (same gotchas as the site: the branch must exist, the root directory
-  is the easy-to-miss field — `docs/deploy-cloudflare.md` and `docs/troubleshooting.md` apply).
+- **Its own Worker** — for an app that wants its own URL or its own domain: a second Cloudflare
+  Worker **on the same repo**, with its own `wrangler.jsonc` in `apps/<slug>/`, **Root directory:
+  `apps/<slug>`**, build command `npm run build` (or none for a no-build static app) and deploy
+  command `npx wrangler deploy`, on branch `main`. Same gotchas as the site: the branch must exist
+  and the root directory is the easy-to-miss field (`docs/deploy-cloudflare.md` and
+  `docs/troubleshooting.md` apply).
 
 ## Quality bar
 

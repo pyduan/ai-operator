@@ -24,7 +24,7 @@ Establish, in the owner's own words:
   - **a pile of source documents** (have them drop everything into `source/inbox/`),
   - **nothing yet** (interview a bit deeper and draft for them).
 - Taste: sites or brands they admire, colors and fonts they love or hate, photos of their work if relevant. Concrete references beat adjectives.
-- Domain: do they own one, where is it registered. (Setup works fine before the domain exists; the site lives on a `.pages.dev` URL meanwhile.)
+- Domain: do they own one, where is it registered. (Setup works fine before the domain exists; the site lives on a `.workers.dev` URL meanwhile.)
 - Any recurring content: gallery, products, events. These become collections.
 - **Governance and repos, in plain terms**: two short questions, both answered into `ORGANIGRAM.md`
   (the governance + repo-map file every future session reads). First, *who else, if anyone, will
@@ -85,6 +85,7 @@ Replace every TODO in these files with what you learned, keeping each file's str
 - `source/brand/tokens.css`: the real palette and fonts. If using webfonts, self-host them per the design guide.
 - `source/facts/README.md`'s relevance section, and `source/facts/methodology.md` (the watch's themes, first sources, and cadence): in-scope/out-of-scope topics and trusted sources, from what the owner just told you.
 - `ORGANIGRAM.md`: replace the placeholder repo row(s) with the real ones, and write the three rights as they actually stand. Solo with one repo means the template is nearly right already; leave it minimal.
+- `site/wrangler.jsonc`: set its `name` to the project name (Cloudflare Workers needs it to match the Worker you'll create at deploy). This is the one deploy field you set now; the domain and `site:` line in `astro.config.mjs` are set later, at go-live, once the domain is known.
 
 Read each personalized guide back as a whole; it must read as this project's guide, with no template smell left.
 
@@ -95,12 +96,13 @@ Build the site in `site/` per `source/formats/website.md`: layout shell first (n
 ## 6. Go live
 
 Walk the owner (or their helper) through `docs/deploy-cloudflare.md` while they click, one step at
-a time, confirming each screen before moving on. **Commit and push everything first**: Cloudflare's
-production-branch dropdown only lists branches that already exist on GitHub, so until the first
-push there is no `main` to pick (a real stumble — see `docs/troubleshooting.md`). If they hit any
-error along the way, check `docs/troubleshooting.md` before improvising; if their problem isn't in
-it, add the entry once solved. Once the `.pages.dev` URL is live, verify it yourself, record the
-URLs in `brief.md`, and continue to the domain if they own one.
+a time, confirming each screen before moving on. **Commit and push everything first**: a
+Git-connected Cloudflare build can only pick a branch that already exists on GitHub, so until the
+first push there is no `main` to pick (a real stumble, see `docs/troubleshooting.md`). Check that
+`site/wrangler.jsonc`'s `name` matches the Worker being created. If they hit any error along the
+way, check `docs/troubleshooting.md` before improvising; if their problem isn't in it, add the
+entry once solved. Once the `.workers.dev` URL is live, verify it yourself, record the URLs in
+`brief.md`, and continue to the domain if they own one.
 
 ## 7. Close
 

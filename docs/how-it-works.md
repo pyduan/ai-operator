@@ -21,7 +21,7 @@ Why Git specifically? Because it's not a technical detail, it's decades of devel
 Git gives the system its memory: every change to every file, forever, with the reason attached. You don't operate it; the AI pulls at the start of each session, commits and pushes at the end of each change. Two things follow that are worth knowing:
 
 - Nothing is ever lost. "Put the gallery back how it was in June" is a valid request.
-- Pushing is publishing. Cloudflare Pages watches the repo and rebuilds the live site on every push, in about a minute.
+- Pushing is publishing. Cloudflare Workers watches the repo and rebuilds the live site on every push, in about a minute.
 
 ## Trust boundaries
 
@@ -49,6 +49,40 @@ first time you ask:
 ## When the project outgrows solo mode
 
 The kit is tuned for one owner (with the AI doing the work). When a second regular contributor joins, the sane next step is the one bigger organizations use: contributors work on branches, changes become pull requests, one person merges. Ask the AI to set that up; the switch is one conversation. The same escalation exists for content (from data files to a real CMS) and for features (forms, shops); start simple, upgrade when reality asks for it.
+
+## One project or several? Structuring the org
+
+Most people start with one project in one repo. When you have, or can foresee, more than one (a few
+programs, a portfolio of clients, several sites under one banner), how you lay them out is a real
+decision, and it's easier to get right at the start than to unpick later. The choice is a spectrum,
+from most shared to most separate:
+
+1. **Folders in one repo**: one brand, one deploy, one history, everything inheriting from the same
+   source. Right when the projects are really facets of one thing.
+2. **Separate repos in one GitHub organization**: each project stands on its own (its own site,
+   deploy, and access) while sharing a common parent. Right when they're distinct but related.
+3. **Separate GitHub organizations**: fully independent, nothing shared. Right when they're really
+   separate organizations.
+
+What decides it is how much source documentation the projects share and which one inherits from
+which. The more they share, the more you nest them together; the more independent they are, the
+more you keep them apart.
+
+Two rules of thumb worth stating up front:
+
+- **Use a GitHub organization, not your personal account, for anything real.** An org can hold many
+  repos, grant access per person, and outlive any one contributor.
+- **Name the main repo `<org>/website`, not `<you>/<project>`.** Put the project's identity in the
+  org name and call its primary repo `website`, so that when a second piece shows up (an app, a
+  sub-site) it becomes another repo in the same org (`org/app`) instead of forcing a rename. For a
+  situation like three programs PEPR, BoPA and CHB, that means either three organizations (one each,
+  if they're independent) or one organization holding the others as repos (if one is the parent they
+  share a brand with), never three folders on one person's account.
+
+You don't have to work this out alone: tell the AI what you're starting and it runs the same
+decision (the `new-project` skill), asks whether it's one project or several and how much they
+share, and proposes a structure before creating anything. Whatever you land on is recorded in
+`ORGANIGRAM.md`, the repo map every session reads.
 
 ## Governance is part of the setup, in plain terms
 

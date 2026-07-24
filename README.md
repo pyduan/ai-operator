@@ -27,7 +27,7 @@ That's the best of both worlds: the acceleration of everyone using AI on everyth
 - **One repo is the source of truth.** Your content, your voice guide, your design system, and your format playbooks all live here as plain files. The website and every deck are derivatives, rebuilt from those sources. You don't integrate a mockup, you keep a design system; you don't email talking points around in Word files, you keep a facts library that's always current for everyone.
 - **AI is the operator.** You open the folder in [Claude Code](https://claude.com/claude-code) and talk in plain language. It reads your guides on its own (the repo tells it where everything is), makes the change, shows you the result, and publishes.
 - **Git remembers everything.** Every version of every page is kept forever, so nothing you do can break the site permanently.
-- **Publishing is free and automatic.** Cloudflare Pages watches the repo and puts every change live on your domain in about a minute.
+- **Publishing is free and automatic.** Cloudflare Workers watches the repo and puts every change live on your domain in about a minute.
 
 ## What a session feels like
 
@@ -58,13 +58,13 @@ source/              your source of truth
   facts/             sourced third-party facts and key figures (stats, benchmarks)
   brand/             voice guide, design guide, design tokens, original assets
   formats/           one playbook per output: website pages, decks
-site/                the website itself (Astro, deployed by Cloudflare Pages)
+site/                the website itself (Astro, deployed by Cloudflare Workers)
 site/public/decks/   your presentations, each a single shareable HTML file
 apps/                your web apps (a calculator, a form flow, a tool), one folder each
 projects/            (optional module) your real work, tracked: charter, log, files, next steps
 team/                (optional module) your team files — gitignored, local-only, never shared
 scripts/             one-command install scripts (mac + windows)
-docs/                how it works, the Cloudflare deploy guide, the troubleshooting FAQ
+docs/                how it works, the Cloudflare Workers deploy guide, the troubleshooting FAQ
 .claude/             skills (setup, new-project, publish, new-deck, research, projects, team, reflect, update-kit) + hooks
 ```
 
@@ -122,6 +122,8 @@ That's not a git rebase and it won't touch your work: the framework files are up
 ## When you grow
 
 The kit is tuned for one owner working solo on `main`. When a second regular contributor joins, the switch is one conversation: contributors move to branches and pull requests, one person merges, and everything else stays the same — the same guides, the same cascade, now with a review before publishing. The mental model (and the escalation paths for content and features) is in [docs/how-it-works.md](docs/how-it-works.md).
+
+Growing in the other direction, into **several projects at once**, is also one conversation: whether they should be folders in one repo, separate repos in one GitHub organization, or separate organizations depends on how much they share, and the AI works it out with you (the `new-project` skill) before creating anything. The trade-offs are in [docs/how-it-works.md](docs/how-it-works.md#one-project-or-several-structuring-the-org).
 
 ## Where this comes from
 

@@ -93,7 +93,7 @@ Claude then personalizes the guides in `source/brand/`, builds a first version o
 
 ## Put it live
 
-Follow [docs/deploy-cloudflare.md](docs/deploy-cloudflare.md), or just ask Claude to walk you through it while you click. In short: connect the GitHub repo to Cloudflare Pages (free), set the root directory to `site`, add the custom domain, adjust DNS. From then on every push publishes automatically.
+Follow [docs/deploy-cloudflare.md](docs/deploy-cloudflare.md), or just ask Claude to walk you through it while you click. In short: connect the GitHub repo to Cloudflare Workers (free), set the root directory to `site`, add the custom domain, adjust DNS. From then on every push publishes automatically.
 
 ## Hand over
 

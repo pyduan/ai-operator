@@ -22,6 +22,12 @@ repos (a shared org repo plus a client's own repo), or when some material lives 
 repo only some people can open — then list them here so the AI clones and pulls the right ones and
 never assumes access it doesn't have.
 
+How to lay out **several projects** in the first place (folders in one repo, separate repos in one
+GitHub organization, or separate organizations), and why a GitHub org beats a personal account with
+a repo named `<org>/website` rather than `<person>/<project>`, is decided by the `new-project` skill
+and explained in [`docs/how-it-works.md`](docs/how-it-works.md#one-project-or-several-structuring-the-org).
+Whatever you choose, record the resulting repos in the table above.
+
 ## Who may do what — the three rights
 
 - **Use** — ask for something, run a workflow. **Default: you.** As people join, anyone you bring in

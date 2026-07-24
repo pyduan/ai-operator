@@ -55,7 +55,7 @@ Three ways to run Claude Code, and the setup differs:
 - **Cloud** (claude.ai/code in the browser) — runs on Anthropic's machines, not yours. It can
   create and edit your GitHub repo directly, and since Cloudflare publishes from GitHub (not from
   your computer), the publish loop works fully in the cloud too. What you lose is the local
-  preview (`npm run dev`) and the local inbox folder; you review via the live `.pages.dev` URL
+  preview (`npm run dev`) and the local inbox folder; you review via the live `.workers.dev` URL
   instead. If installing things locally keeps failing, this is the escape hatch: create your copy
   on GitHub with **Use this template**, open it in Claude Code on the web, and skip every local
   install.
@@ -67,31 +67,43 @@ generate, upload, or lose. If git ever answers `Permission denied (publickey)`, 
 configured for SSH remotes — ask Claude to "switch my remote to HTTPS" (one command), or
 re-run `gh auth login` and pick HTTPS.
 
-## Cloudflare asks for a "Production branch" and the dropdown is empty (or won't take "main")
+## Connecting the repo asks for a branch and the list is empty (or won't take "main")
 
-The dropdown only lists branches that **already exist on GitHub**, and a brand-new repo has none
-until the first push. This trips almost everyone who connects Cloudflare before building anything.
+A Git-connected Cloudflare build only lists branches that **already exist on GitHub**, and a
+brand-new repo has none until the first push. This trips almost everyone who connects Cloudflare
+before building anything.
 
 Fix: build your v0 with Claude first. When it commits and pushes, the `main` branch comes into
-existence, and Cloudflare's dropdown will then offer it. The production branch is always `main`.
+existence, and Cloudflare will then offer it. The production branch is always `main`.
 
 ## Cloudflare deployed something, but it's not my site (or the build fails)
 
-Two usual causes:
+Usual causes:
 
-- **Root directory**: the website lives in the `site/` subfolder, and Cloudflare must be told —
-  set **Root directory: `site`** in the build settings (see docs/deploy-cloudflare.md; it's the
-  easy-to-miss field).
-- **Node version complaints in the build log**: add an environment variable `NODE_VERSION` set to
-  a current LTS (for example `22`) in the Pages project settings.
+- **Root directory**: the website lives in the `site/` subfolder, and Cloudflare must be told to
+  build there. Set **Root directory: `site`** in the build settings (see docs/deploy-cloudflare.md;
+  it's the easy-to-miss field).
+- **Worker name mismatch**: with Workers, the Worker's name in the dashboard must match the `name`
+  in `site/wrangler.jsonc`, or the build fails. The setup skill sets that name to your project name;
+  make sure they match.
+- **Node version complaints in the build log**: set a build variable `NODE_VERSION` to a current
+  LTS (for example `22`) in the Worker's **Settings → Build**.
+
+## I already publish with Cloudflare Pages — did this update break it?
+
+No. Pulling the template's Workers change does not touch a live Pages deployment: the deploy is
+configured in the Cloudflare dashboard, not by any file in the repo, and Pages ignores the new
+`site/wrangler.jsonc` (it has no `pages_build_output_dir` key). Your Pages site keeps building and
+serving as before. Moving to Workers is a one-time dashboard action you take when you choose; the
+steps are in `docs/deploy-cloudflare.md` under "Already publishing with Cloudflare Pages?".
 
 ## Second project: new repo or a folder inside this one?
 
 One project = one repo. A genuinely distinct project (a different brand, a different site, a
 webapp next to your lab's site) gets its **own repo** from the template and its own Cloudflare
-Pages project; don't nest it as a subfolder of an existing one. If you're unsure whether
-something is a new project or a variant of the current one, ask Claude — the `new-project` skill
-exists exactly for that call.
+Worker; don't nest it as a subfolder of an existing one. If you're unsure whether something is a
+new project or a variant of the current one, ask Claude — the `new-project` skill exists exactly
+for that call, and covers how to structure several projects (folders, repos, or orgs) too.
 
 ## Still stuck?
 

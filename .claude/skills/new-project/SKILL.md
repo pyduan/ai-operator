@@ -17,6 +17,52 @@ If the owner's request is ambiguous, ask directly:
 - Would its content (bio, prices, voice, palette) ever need to appear **alongside** what's already
   in `source/content/` and `source/brand/`, or is it a fully separate identity?
 - Does it need its **own domain**?
+- **Is this one project, or several at once?** If the owner is standing up more than one project or
+  use case in one go (a common moment: someone arrives with three already in mind), stop and settle
+  the structure first, see [Several projects at once](#several-projects-at-once-folders-repos-or-organizations)
+  below, before creating anything.
+- **How much do they share?** How much source documentation is common (brand, facts, voice), and
+  does one project inherit from another? Strong shared inheritance points to nesting them together;
+  largely independent projects point to keeping them apart.
+
+## Several projects at once: folders, repos, or organizations?
+
+When the owner is standing up more than one project or use case, decide the structure **before
+building any of them**. Answer the two questions above first (one project or several; how much they
+share and which inherits from which), then place them on this spectrum, from most shared to most
+separate:
+
+1. **Different folders in one repo** — everything inherits one brand, voice, and facts, with one
+   deploy and one history. Right when the "projects" are really facets of one thing and share
+   almost all of their source documentation.
+2. **Different repos in one GitHub organization** — each project is its own repo (its own site,
+   deploy, and access), grouped under one org and able to draw on a shared parent. Right when the
+   projects are distinct but have real shared inheritance (a common brand, or a parent program one
+   descends from).
+3. **Different GitHub organizations** — full separation: separate identity, access, and billing,
+   no shared inheritance. Right when the projects are genuinely independent organizations.
+
+The dividing question is **how much shared source documentation there is and which project should
+inherit from which.** Strong shared inheritance points left (folders in one repo, or repos in one
+org); largely independent projects point right (separate orgs).
+
+**Use GitHub organizations, not personal accounts, for anything real**, and name the primary repo
+`<org>/website` (for example `bopa/website`), not `<person>/<project>` (for example
+`ericvibert/bopa`). The org carries the project's identity, and `website` leaves room for
+sub-projects to arrive later as their own repos (`bopa/appX`, `bopa/appY`) without renaming
+anything. In each org, clone `agentic-organization` and work from it. One personal account with a
+repo per project paints you into a corner the moment a project grows a second piece.
+
+Worked example, three projects PEPR, BoPA and CHB:
+
+- Largely independent → **three organizations** (PEPR, BoPA, CHB), each with its own `website` repo
+  cloned from the template.
+- One is the parent the others descend from → **one organization** (say CHB) holding them as repos
+  (`chb/website` for CHB itself, plus `chb/bopa` and `chb/pepr`), so the shared brand and facts live
+  once and each project inherits them.
+
+Register whatever you choose in [`ORGANIGRAM.md`](../../../ORGANIGRAM.md)'s repo map, so the
+structure and its access boundaries are written down once.
 
 ## It's a variant — stay in this repo
 
@@ -28,7 +74,7 @@ what already exists:
 - A new page or collection → `source/formats/website.md`, build it in `site/`.
 - A **web app for the same project** (a calculator, a simulator, an intake form, a small tool) →
   `apps/<slug>/` per `source/formats/webapp.md` — same repo, same brand; it publishes under the
-  site or as its own Cloudflare Pages project on this repo, but it is **not** a new repo.
+  site or as its own Cloudflare Worker on this repo, but it is **not** a new repo.
 - A **sub-site** (a seasonal microsite, an event page, a landing for a campaign) that still sounds
   and looks like this project → a section or page of `site/`, or `apps/<slug>/` if it's genuinely
   its own little thing; still this repo.
@@ -41,7 +87,7 @@ what already exists:
 The dividing line, in one question: **would this thing cite this repo's facts and speak in this
 repo's voice?** Yes → it lives here (site page, sub-site, or `apps/`). No → new repo. (Real case:
 someone's personal webapp next to the lab site they contribute to — different project, own repo,
-own Cloudflare Pages project; nesting it as a subfolder of the lab's repo is the mistake.)
+own Cloudflare Worker; nesting it as a subfolder of the lab's repo is the mistake.)
 
 ## It's a new project — a new repo
 
@@ -58,8 +104,10 @@ prices, and voice. Instead:
    the new project's own setup interview, the same way an existing-repo ingestion works (see the
    setup skill's "Existing repo" ingestion path) — never bulk-copy `source/` wholesale.
 4. If the two projects are related enough that the owner wants a shared brand kit between them
-   (e.g. two sites for the same organization), that's a bigger structural decision — flag it and
-   propose a monorepo split rather than deciding it silently; don't default into it.
+   (e.g. two sites for the same organization), that's the structural decision covered by
+   [Several projects at once](#several-projects-at-once-folders-repos-or-organizations) above:
+   flag it and propose the right shape (repos in one org, or folders in one repo) rather than
+   deciding it silently; don't default into it.
 
 ## It's a self-contained area — a subfolder here, or its own repo
 

@@ -44,6 +44,13 @@ theirs; the *framework scaffolding* (`.claude/`, `docs/`, `scripts/`, the format
    the update introduced the `projects` and `team` modules → mention them in one sentence each and
    offer to activate, creating `source/objectives.md` from the template if the owner wants
    prioritization against a north star).
+   One follow-up needs care: **the deploy default moved to Cloudflare Workers (from Pages).** The
+   refreshed `docs/deploy-cloudflare.md` now describes Workers, but `site/wrangler.jsonc` is project
+   config living in `site/` (like `astro.config.mjs`), so this update does **not** bring it in. If
+   the owner still publishes through Cloudflare Pages, their live site keeps working untouched (the
+   doc's "Already publishing with Cloudflare Pages?" section explains why, and how to migrate when
+   they choose). Point them there; only when they decide to migrate do you add `site/wrangler.jsonc`
+   with their project name and walk them through the dashboard steps. Don't force the switch.
    Show the owner what changed and what you propose to redo; don't silently rewrite their pages.
 6. **Verify + publish.** `npm run build` inside `site/` is green, run it locally, then commit
    ("chore: update framework from template") and push, per the `publish` skill. Tell the owner in
