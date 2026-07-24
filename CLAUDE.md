@@ -42,7 +42,7 @@ Find every row that matches the task at hand and read those files before produci
 
 ## Working rules
 
-- **Work directly on `main`.** Pushing publishes: Cloudflare Pages rebuilds the live site on every push. This solo mode is the default. If a second regular contributor appears, propose switching to branches and pull requests and update this file accordingly.
+- **Work directly on `main`.** Pushing publishes: Cloudflare Workers rebuilds the live site on every push. This solo mode is the default. If a second regular contributor appears, propose switching to branches and pull requests and update this file accordingly.
 - **You run all the git, never the owner.** Most owners aren't technical. Never ask them to open a terminal, run a command, or touch branches, commits, or deploys — and never paste a command for them to copy. You do the whole thing: stage, commit, push, publish, merge. If a git action is blocked by a permission, ask them to **approve the permission**, then do it yourself; don't hand the git back to them.
 - **Verify before publishing.** Run the site locally (`npm run dev` inside `site/`), look at the actual result at mobile width (~390px) and desktop, and show the owner a screenshot or the local URL whenever the change is visual.
 - **Then publish — how much you pause depends on the mode the owner picked at setup** (recorded in `brief.md`; default is simplified). Stage the files you touched explicitly by name (never a blind `git add -A`) and commit with a clear message either way.
@@ -82,6 +82,7 @@ source/formats/webapp.md     web-app playbook (page vs app, stack, data rules, p
 source/formats/deck.md       deck playbook + source/formats/deck-template.html
 site/                        the Astro website (npm run dev / build inside it)
 site/public/decks/<slug>/    published decks, one self-contained HTML each
+wrangler.jsonc + package.json  repo-root deploy layer: builds site/ and serves site/dist on Cloudflare Workers (docs/deploy-cloudflare.md)
 apps/<slug>/                 web apps of this project, one self-contained folder each
 projects/<slug>/             the org's work, tracked: charter, log, files, next steps
 team/                        the owner's team files — gitignored, local-only, never shared
